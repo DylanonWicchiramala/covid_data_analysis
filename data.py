@@ -9,3 +9,4 @@ thai_df = pd.DataFrame(thai_csv)
 thailand_covid_df = thai_df
 world_df = pd.DataFrame(world_csv)
 owid_covid_data_df = world_df
+
