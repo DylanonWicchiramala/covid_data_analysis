@@ -26,6 +26,7 @@ def pull_csv(url, path = None):
 
 
 def pull_thai_csv():
-    pass
+    import data 
+    pass 
 
 pull_csv(owid_covid_data_url, './source/owid_covid_data.csv')  
