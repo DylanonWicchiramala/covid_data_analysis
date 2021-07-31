@@ -32,3 +32,6 @@ pull_file(owid_covid_data_url).to_csv('./source/owid_covid_data.csv')
 #save thai csv file.
 df ,isocode = get_by_country('THA')
 df.to_csv('./source/{}_covid_data.csv'.format(isocode))
+
+df ,isocode = get_by_country('IND')
+df.to_csv('./source/{}_covid_data.csv'.format(isocode))
