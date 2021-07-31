@@ -24,8 +24,12 @@ thai_df = thai_df.fillna(0)
 
 #get content contain only country whitch selected and save as a new file. use isocode(uppercase)
 def get_by_country(isocode:str):
-    index = ['iso_code','continent','location','date']
-    _df = pd.read_csv('./source/owid_covid_data.csv')
-    _df = _df.set_index(index)
-    _df = _df.loc[isocode]
+    try:
+        global world_df
+        _df = world_df.loc[isocode]
+    except:
+        index = ['iso_code','continent','location','date']
+        _df = pd.read_csv('./source/owid_covid_data.csv')
+        _df = _df.set_index(index)
+        _df = _df.loc[isocode]
     return _df, isocode

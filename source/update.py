@@ -27,7 +27,8 @@ def get_by_country(isocode:str = 'THA' ):
     return _df, isocode
 
     
-#save csv file.gg
+#save world csv file.
 pull_file(owid_covid_data_url).to_csv('./source/owid_covid_data.csv')  
+#save thai csv file.
 df ,isocode = get_by_country('THA')
 df.to_csv('./source/{}_covid_data.csv'.format(isocode))
