@@ -37,18 +37,3 @@ df.to_csv('./source/{}_covid_data.csv'.format(_isocode))
 
 df ,_isocode = get_by_country('IND')
 df.to_csv('./source/{}_covid_data.csv'.format(_isocode))
-
-def save_all_country():
-    from data import world_df
-    import numpy as np
-
-    index = world_df.index.values
-    isocode = np.empty(0)
-    temp = None
-    for ind in index:
-        if ind[0] != temp : isocode = np.append(isocode, [ind[0]])
-        temp = ind[0]
-        
-    for iso in isocode:
-        df, a = get_by_country(iso)
-        df.to_csv('./source/{}_covid_data.csv'.format(iso))
