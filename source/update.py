@@ -8,7 +8,8 @@ import io
 owid_covid_data_url = 'https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv'
 
 
-#get and save_as csv file. must use raw-csv url path.
+#get and save csv file form online source. must use raw-csv url path.
+#return pd data frame.
 def pull_file(url):
     
     # get content from url.
@@ -29,9 +30,25 @@ def get_by_country(isocode:str = 'THA' ):
     
 #save world csv file.
 pull_file(owid_covid_data_url).to_csv('./source/owid_covid_data.csv')  
-#save thai csv file.
-df ,isocode = get_by_country('THA')
-df.to_csv('./source/{}_covid_data.csv'.format(isocode))
 
-df ,isocode = get_by_country('IND')
-df.to_csv('./source/{}_covid_data.csv'.format(isocode))
+#save thai csv file.
+df ,_isocode = get_by_country('THA')
+df.to_csv('./source/{}_covid_data.csv'.format(_isocode))
+
+df ,_isocode = get_by_country('IND')
+df.to_csv('./source/{}_covid_data.csv'.format(_isocode))
+
+def save_all_country():
+    from data import world_df
+    import numpy as np
+
+    index = world_df.index.values
+    isocode = np.empty(0)
+    temp = None
+    for ind in index:
+        if ind[0] != temp : isocode = np.append(isocode, [ind[0]])
+        temp = ind[0]
+        
+    for iso in isocode:
+        df, a = get_by_country(iso)
+        df.to_csv('./source/{}_covid_data.csv'.format(iso))
